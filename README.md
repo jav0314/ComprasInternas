@@ -9,7 +9,8 @@
 
 - **Frontend**: [`http://localhost:4200`](http://localhost:4200)
 - **Backend**: [`https://localhost:44327`](https://localhost:44327)
-
+Por favor, estar atentos en las conexiones.
+ DB <- -> Back <- -> Front
 ---
 
 ## 📁 Estructura del Proyecto
