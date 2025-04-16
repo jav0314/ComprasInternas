@@ -74,7 +74,7 @@ namespace ComprasInternas.DAO
             using var cmd = new SqlCommand("sp_EditarSolicitud", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@IdSolicitud", id);
-            cmd.Parameters.AddWithValue("@IdUsuario", dto.IdUsuario);
+            cmd.Parameters.AddWithValue("@IdUsuario", 1);
             cmd.Parameters.AddWithValue("@NuevaDescripcion", dto.Descripcion);
             cmd.Parameters.AddWithValue("@NuevoMonto", dto.Monto);
             cmd.Parameters.AddWithValue("@NuevaFechaEsperada", dto.FechaEsperada);

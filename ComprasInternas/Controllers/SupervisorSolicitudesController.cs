@@ -26,14 +26,40 @@ public class SupervisorSolicitudesController : ControllerBase
     public IActionResult Aprobar(int id, [FromBody] Solicitudes dto)
     {
         var resultado = _dao.AprobarSolicitud(id, dto);
-        return resultado ? Ok("Solicitud aprobada.") : BadRequest("Error al aprobar.");
+
+        if (resultado)
+        {
+            return Ok(new { mensaje = "Solicitud aprobada." });
+        }
+        else
+        {
+            return BadRequest(new { error = "Error al aprobar." });
+        }
     }
+
 
     // PUT: api/supervisor/solicitudes/{id}/rechazar
     [HttpPut("{id}/rechazar")]
     public IActionResult Rechazar(int id, [FromBody] Solicitudes dto)
     {
         var resultado = _dao.RechazarSolicitud(id, dto);
-        return resultado ? Ok("Solicitud rechazada.") : BadRequest("Error al rechazar.");
+
+        if (resultado)
+        {
+            return Ok(new { mensaje = "Solicitud rechazada." });
+        }
+        else
+        {
+            return BadRequest(new { error = "Error al rechazar." });
+        }
     }
+
+    [HttpGet("solicitudes/aprobadas")]
+    public IActionResult ObtenerSolicitudesAprobadas()
+    {
+        var aprobadas = _dao.ObtenerSolicitudesAprobadas();
+        return Ok(aprobadas);
+    }
+
+
 }

@@ -26,7 +26,7 @@ public class UsuarioSolicitudesController : ControllerBase
     public IActionResult Crear([FromBody] Solicitudes solicitud)
     {
         _dao.InsertarSolicitud(solicitud);
-        return Ok("Solicitud registrada exitosamente.");
+        return Ok(new { mensaje = "Solicitud registrada exitosamente." });
     }
 
     // PUT: api/usuario/solicitudes/{id}
@@ -34,14 +34,32 @@ public class UsuarioSolicitudesController : ControllerBase
     public IActionResult Editar(int id, [FromBody] Solicitudes solicitud)
     {
         var resultado = _dao.EditarSolicitud(id, solicitud);
-        return resultado ? Ok("Solicitud actualizada.") : BadRequest("No se pudo actualizar la solicitud.");
+
+        if (resultado)
+        {
+            return Ok(new { mensaje = "Solicitud actualizada." });
+        }
+        else
+        {
+            return BadRequest("No se pudo actualizar la solicitud.");
+        }
     }
+
 
     // DELETE: api/usuario/solicitudes/{id}
     [HttpDelete("{id}")]
     public IActionResult Eliminar(int id, [FromQuery] int idUsuario)
     {
         var resultado = _dao.EliminarLogicamenteSolicitud(id, idUsuario);
-        return resultado ? Ok("Solicitud eliminada lógicamente.") : BadRequest("No se pudo eliminar la solicitud.");
+
+        if (resultado)
+        {
+            return Ok(new { mensaje = "Solicitud eliminada lógicamente." });
+        }
+        else
+        {
+            return BadRequest("No se pudo eliminar la solicitud.");
+        }
     }
+
 }

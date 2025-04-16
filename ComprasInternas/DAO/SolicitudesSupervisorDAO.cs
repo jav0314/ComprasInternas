@@ -71,7 +71,7 @@ public class SolicitudSupervisorDAO
         using var cmd = new SqlCommand("sp_AprobarRechazarSolicitud", conn);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@IdSolicitud", idSolicitud);
-        cmd.Parameters.AddWithValue("@IdSupervisor", dto.IdSupervisor);
+        cmd.Parameters.AddWithValue("@IdSupervisor", 2);
         cmd.Parameters.AddWithValue("@NuevoEstadoSolicitud", tipo);
         cmd.Parameters.AddWithValue("@Comentario", dto.Comentario ?? string.Empty);
 
@@ -85,4 +85,33 @@ public class SolicitudSupervisorDAO
             return false;
         }
     }
+    public List<Solicitudes> ObtenerSolicitudesAprobadas()
+    {
+        var solicitudes = new List<Solicitudes>();
+
+        using var conn = ObtenerConexion();
+        conn.Open();
+
+        using var cmd = new SqlCommand("SELECT * FROM vw_SolicitudesAprobadasSupervisor", conn);
+        using var reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            solicitudes.Add(new Solicitudes
+            {
+                IdSolicitud = reader.GetInt32(0),
+                IdUsuario = reader.GetInt32(1),
+                Descripcion = reader.GetString(3),
+                Monto = reader.GetDecimal(4),
+                FechaEsperada = DateOnly.FromDateTime(reader.GetDateTime(5)),
+                EstadoSolicitud = reader.GetString(6),
+                Comentario = reader.IsDBNull(10) ? "" : reader.GetString(10),
+                FechaRegistro = DateOnly.FromDateTime(reader.GetDateTime(11)),
+                FechaModificacion = DateOnly.FromDateTime(reader.GetDateTime(12))
+            });
+        }
+
+        return solicitudes;
+    }
+
 }
