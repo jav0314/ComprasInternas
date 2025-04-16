@@ -1,4 +1,10 @@
+using ApiComprasInternas.DAO;
+using ComprasInternas.DAO;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<SolicitudesUsuarioDAO>();
+builder.Services.AddScoped<SolicitudSupervisorDAO>();
 
 // Add services to the container.
 

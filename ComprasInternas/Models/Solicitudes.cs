@@ -7,7 +7,7 @@
         public string? Descripcion { get; set; } 
         public decimal Monto { get; set; } 
         public DateOnly FechaEsperada { get; set; }
-        public int EstadoSolicitud { get; set; }
+        public string? EstadoSolicitud { get; set; }
         public int Estado { get; set; }
         public int IdSupervisor { get; set; }
         public string? Comentario { get; set; }
