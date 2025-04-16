@@ -33,7 +33,7 @@ namespace ComprasInternas.DAO
                 return null;
 
             var hashGuardado = reader["ContraseniaHash"].ToString();
-            var idRol = (int)reader["IdRol"];
+            //var idRol = (int)reader["IdRol"];
             var estado = (int)reader["Estado"];
 
             if (estado != 1 || !AuthHelper.Verificar(contrasenaPlano, hashGuardado!))
@@ -43,7 +43,7 @@ namespace ComprasInternas.DAO
             {
                 IdUsuario = (int)reader["IdUsuario"],
                 NombreUsuario = reader["NombreUsuario"].ToString(),
-                IdRol = idRol,
+                IdRol = (int)reader["IdRol"],
                 Estado = estado
             };
         }
