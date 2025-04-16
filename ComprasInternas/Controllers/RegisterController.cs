@@ -1,14 +1,7 @@
-﻿using ApiComprasInternas.DAO;
-using ComprasInternas.DAO;
-using ComprasInternas.Helpers;
+﻿using ComprasInternas.DAO;
 using ComprasInternas.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.Data;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+
 
 [ApiController]
 [Route("api/auth")]

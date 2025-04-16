@@ -1,4 +1,5 @@
-﻿using ComprasInternas.Models;
+﻿using ComprasInternas.DAO;
+using ComprasInternas.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,33 +10,30 @@ using System.Text;
 [Route("api/auth")]
 public class LoginController : ControllerBase
 {
+    private readonly LoginDAO _dao;
     private readonly IConfiguration _config;
-
-    public LoginController(IConfiguration config)
+    public LoginController(LoginDAO dao, IConfiguration config)
     {
+        _dao = dao;
         _config = config;
     }
 
+
     [HttpPost("login")]
-    public IActionResult Login([FromBody] Usuarios credenciales)
+    public IActionResult Login([FromBody] Usuarios cred)
     {
         // Simulación de validación (reemplaza con lógica real)
-        if (credenciales.NombreUsuario == "usuario1" && credenciales.Estado == 1)
-        {
-            var token = GenerarJwt(credenciales.NombreUsuario, credenciales.IdRol);
-            return Ok(new { token });
-        }
+        var usuario = _dao.ValidarLogin(cred.NombreUsuario ?? "", cred.Contraseña ?? "");
 
-        return Unauthorized("Credenciales inválidas");
-    }
+        if (usuario == null)
+            return Unauthorized("Credenciales inválidas");
 
-    private string GenerarJwt(string username, int rol)
-    {
         var claims = new[]
         {
-            new Claim(ClaimTypes.Name, username),
-            new Claim(ClaimTypes.Role, rol == 2 ? "Supervisor" : "Usuario")
-        };
+        new Claim(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
+        new Claim(ClaimTypes.Name, usuario.NombreUsuario!),
+        new Claim(ClaimTypes.Role, usuario.IdRol == 2 ? "Supervisor" : "Usuario")
+    };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -44,10 +42,9 @@ public class LoginController : ControllerBase
             issuer: _config["Jwt:Issuer"],
             audience: _config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(2),
+            expires: DateTime.UtcNow.AddMinutes(15),
             signingCredentials: creds
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
     }
-}
