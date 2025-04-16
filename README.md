@@ -36,7 +36,7 @@
 
 
 ---
-
+📦 Repositorio Frontend: [github.com/jav0314/ComprasInternas](https://github.com/jav0314/ComprasInternas)
 ## 🚀 Pasos para Iniciar
 
 1. **Restaurar la base de datos** usando `script.sql`.
