@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<SolicitudesUsuarioDAO>();
 builder.Services.AddScoped<SolicitudSupervisorDAO>();
+builder.Services.AddScoped<RegisterDAO>();
+
 
 // Add services to the container.
 
