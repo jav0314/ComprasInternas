@@ -15,7 +15,7 @@ Por favor, estar atentos en las conexiones.
 
 ## 📁 Estructura del Proyecto
 
-
+```
 ├── backend/                   
 │   ├── Controllers/
 │   ├── DAO/
@@ -35,7 +35,7 @@ Por favor, estar atentos en las conexiones.
 │       └── models/
 ├── script.sql
 └── README.md
-
+```
 
 
 ---
