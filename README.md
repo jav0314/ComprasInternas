@@ -16,25 +16,30 @@ Por favor, estar atentos en las conexiones.
 ## 📁 Estructura del Proyecto
 
 
-├── backend/                   
-│   ├── Controllers/
-│   ├── DAO/
-│   ├── Models/
-│   ├── Helpers/
-│   └── Program.cs
-├── frontend/
-│   └── app/
-│       ├── components/
-│       │   ├── aprobar-rechazar/
-│       │   │   └── aprobar-rechazar.component.ts
-│       │   ├── principal/
-│       │   │   └── principal.component.ts
-│       │   └── supervisor/
-│       │       └── supervisor.component.ts
-│       ├── services/
-│       └── models/
-├── script.sql
-└── README.md
+📦 backend/
+ ┣ 📂 Controllers/
+ ┣ 📂 DAO/
+ ┣ 📂 Models/
+ ┣ 📂 Helpers/
+ ┣ 📄 Program.cs
+ ┣ 📂 aprobar-rechazar/
+ ┃ ┣ 📄 aprobar-rechazar.component.ts
+ ┃ ┗ 📂 services/
+ ┃   ┗ 📂 models/
+ ┣ 📂 supervisor/
+ ┃ ┗ 📄 supervisor.component.ts
+ ┣ 📄 script.sql
+
+📦 frontend/
+ ┣ 📂 app/
+ ┃ ┣ 📂 components/
+ ┃ ┃ ┣ 📂 principal/
+ ┃ ┃ ┃ ┗ 📄 principal.component.ts
+ ┃ ┃ ┗ 📂 supervisor/
+ ┃ ┃   ┗ 📄 supervisor.component.ts
+
+📄 README.md
+
 
 
 ---
