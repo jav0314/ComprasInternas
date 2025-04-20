@@ -16,22 +16,23 @@ Por favor, estar atentos en las conexiones.
 ## 📁 Estructura del Proyecto
 
 
-├── backend (.NET API)
-│   ├── Controllers
-│   ├── DAO
-│   ├── Models
-│   ├── Helpers
+├── backend/                   
+│   ├── Controllers/
+│   ├── DAO/
+│   ├── Models/
+│   ├── Helpers/
 │   └── Program.cs
-
-├── frontend (Angular)
-│   ├── app
-│   │   ├── principal.component.ts
-│   │   ├── supervisor.component.ts
-│   │   ├── aprobar-rechazar.component.ts
-│   │   ├── services
-│   │   └── Models
-
-
+├── frontend/
+│   └── app/
+│       ├── components/
+│       │   ├── aprobar-rechazar/
+│       │   │   └── aprobar-rechazar.component.ts
+│       │   ├── principal/
+│       │   │   └── principal.component.ts
+│       │   └── supervisor/
+│       │       └── supervisor.component.ts
+│       ├── services/
+│       └── models/
 ├── script.sql
 └── README.md
 
